@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&family=Roboto+Slab&display=swap');
+
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +19,77 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p {
+	font-size: 1.6rem;
+}
+
+h1 {
+	font-size: 6rem;
+}
+
+.app {
+	width: 100%;
+	height:140vh;
+	position: relative;
+	background-color: rgba(45,0,0,0.4);
+	color: #fff;
+
+}
+
+.app::before{
+	content: '';
+	background-image: url('https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399115/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/thailand.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+
+.container {
+	max-width: 700px;
+	height: 700px;
+	margin: auto;
+	padding: 0 1rem;
+	position: relative;
+	top: 10%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+
+.app .top {
+	width: 100%;
+	margin: 1rem auto;
+}
+
+.app .description {
+	position: relative;
+	right: -90%;
+	transform-origin: 0 0;
+	transform: rotate(269deg);
+
+}
+
+.app .bottom {
+	display: flex;
+	justify-content: space-evenly;
+	text-align: center;
+	width: 100%;
+	margin: 1rem auto;
+	padding: 1rem;
+	border-radius: 12px;
+	background-color: rgba(255,255,255, 0.2);
+}
+
+.bold {
+	font-weight: 700;
 }

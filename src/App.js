@@ -18,7 +18,7 @@ function App() {
 
 
 
-    <div className="App">
+    <div className="app">
 			<div className="container">
 				<div className="top">
 					<div className="location">
@@ -33,13 +33,16 @@ function App() {
 				</div>
 				<div className="bottom">
 					<div className="feels">
-						<h1>30℃</h1>
+						<p className='bold'>30℃</p>
+						<p>Feels like</p>
 					</div>
 					<div className="humidity">
-						<h1>10%</h1>
+						<p className='bold'>10%</p>
+						<p>Humidity</p>
 					</div>
 					<div className="wind">
-						<h1>5 mph</h1>
+						<p>5 MPH</p>
+						<p>Wind Speed</p>
 					</div>
 					<a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Connect to Spotify</a>
 				</div>
