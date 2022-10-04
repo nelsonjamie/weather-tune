@@ -77,15 +77,41 @@ class App extends React.Component {
 							<p>{this.state.weather}</p>
 						</div>
 					</div>
-
-					<iframe
+					<div className="grid">
+					<div>
+						<iframe
 					        title="Spotify Web Player"
 					        src={`https://open.spotify.com/embed/playlist/0iGIfxwsyhMHZ3GMXgW3MH?si=f024c3aa52294aa1`}
-					        width={'100%'}
+					        width={'90%'}
 					        height={'500'}
 					        frameBorder={0}
 					        allow={true}
 					      />
+					</div>
+
+					<div>
+						<iframe
+					        title="Spotify Web Player"
+					        src={`https://open.spotify.com/embed/playlist/37i9dQZF1DX1BzILRveYHb`}
+					        width={'90%'}
+					        height={'500'}
+					        frameBorder={0}
+					        allow={true}
+					      />
+					</div>
+
+					<div>
+						<iframe
+					        title="Spotify Web Player"
+					        src={`https://open.spotify.com/embed/playlist/2L7ITJDRWIVNkxNq8qhI30`}
+					        width={'90%'}
+					        height={'500'}
+					        frameBorder={0}
+					        allow={true}
+					      />
+					</div>
+
+					</div>
 
 					<div className="bottom">
 						<div className="feels">
