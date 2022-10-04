@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios'
+import { loginEndpoint } from './spotify'
 import './App.css';
 
 
@@ -12,11 +13,6 @@ class App extends React.Component {
 		LocKey: '438540'
 	}
 
-	// //for Spotify Api
-	// const CLIENT_ID = '874bc4727f4046dfb6ace3b47584305f'
-	// const REDIRECT_URI = 'http://localhost:3000/'
-	// const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
-	// const RESPONSE_TYPE = 'token'
 
 	// for Weather Api
 	// const url = 'https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=a8bb6300ed41f0f14aca082acab36629'
@@ -78,13 +74,15 @@ class App extends React.Component {
 							<p>5 MPH</p>
 							<p>Wind Speed</p>
 						</div>
+						<div className="spotify">
+							<a href= { loginEndpoint }><div>Connect to Spotify</div></a>
+						</div>
 					</div>
 				</div>
 			</div>
 
 	)
 	}
-
 }
 
 export default App;
