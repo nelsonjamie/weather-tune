@@ -40,7 +40,7 @@ class App extends React.Component {
 			const token = window.location.hash.substring(1).split("=")[1]
 
 			if (token) {
-				searchPlaylist(token, 'Hip-hop')
+				searchPlaylist(token, this.state.weather)
 				console.log(token)
 			} else {
 				console.log("noooo");
