@@ -67,6 +67,16 @@ class App extends React.Component {
 							<p>{this.state.weather}</p>
 						</div>
 					</div>
+
+					<iframe
+					        title="Spotify Web Player"
+					        src={`https://open.spotify.com/embed/playlist/0iGIfxwsyhMHZ3GMXgW3MH?si=f024c3aa52294aa1`}
+					        width={'100%'}
+					        height={'500'}
+					        frameBorder={0}
+					        allow={true}
+					      />
+
 					<div className="bottom">
 						<div className="feels">
 							<p className='bold'>{this.state.feelsLike}℃</p>
