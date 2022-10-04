@@ -9,7 +9,6 @@ class App extends React.Component {
 		weather: 'sunny',
 		longitude: '0',
 		latitude: '0',
-		LocKey: '438540'
 	}
 
 	// //for Spotify Api
@@ -32,18 +31,21 @@ class App extends React.Component {
 						longitude: position.coords.longitude
 					})
 					console.log(this.state.latitude)
+					this.getWeather()
 	    	})
 	    } else {
 	      console.log("Not Available");
 	    }
 	  }
 
-	
-	// getWeather = async () => {
-	// 	let weather = await axios.get('http://dataservice.accuweather.com/currentconditions/v1/')
-	// 	console.log(weather)
-	// 	return weather
-	// }
+
+	getWeather = async () => {
+		let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=7217d8925634726c87adcf087ea90583`)
+		console.log(openweather)
+		// this.setState({
+		// 	weather: openweather
+		// })
+	}
 
 
 	render() {
