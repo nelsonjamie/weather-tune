@@ -77,6 +77,11 @@ class App extends React.Component {
 							<p>{this.state.weather}</p>
 						</div>
 					</div>
+
+					<div >
+						<a href= { loginEndpoint }><button className='spotify'>Login to Spotify</button></a>
+					</div>
+
 					<div className="grid">
 					<div>
 						<iframe
@@ -110,8 +115,7 @@ class App extends React.Component {
 					        allow={true}
 					      />
 					</div>
-
-					</div>
+				</div>
 
 					<div className="bottom">
 						<div className="feels">
@@ -125,9 +129,6 @@ class App extends React.Component {
 						<div className="wind">
 							<p>{this.state.windspeed} m/s</p>
 							<p>Wind Speed</p>
-						</div>
-						<div className="spotify">
-							<a href= { loginEndpoint }><div>Connect to Spotify</div></a>
 						</div>
 					</div>
 				</div>
