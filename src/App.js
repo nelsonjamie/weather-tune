@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import axios from 'axios'
 import './App.css';
 
@@ -47,7 +47,6 @@ function App() {
 					<a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Connect to Spotify</a>
 				</div>
 			</div>
-
     </div>
   );
 }
