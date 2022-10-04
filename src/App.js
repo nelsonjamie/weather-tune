@@ -44,10 +44,10 @@ class App extends React.Component {
 
 	getWeather = async () => {
 		let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&units=metric&appid=7217d8925634726c87adcf087ea90583`)
-		console.log(JSON.stringify(openweather.data, null, 2))
+		// console.log(JSON.stringify(openweather.data, null, 2))
 
 		this.setState({
-			weather: openweather.data.weather[0].main,
+			weather: openweather.data.weather[0].description,
 			temp: Math.floor(openweather.data.main.temp),
 			feelsLike: Math.floor(openweather.data.main.feels_like),
 			humidity: openweather.data.main.humidity,
