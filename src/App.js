@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios'
-import { loginEndpoint } from './spotify'
+import { loginEndpoint, searchPlaylist } from './spotify'
 import './App.css';
 
 
@@ -32,6 +32,16 @@ class App extends React.Component {
 	    } else {
 	      console.log("Not Available");
 	    }
+
+			const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
+			const token = window.location.hash.substring(1).split("=")[1]
+
+			if (token) {
+				searchPlaylist(token, 'Hip-hop')
+				console.log(token)
+			} else {
+				console.log("noooo");
+			}
 	  }
 
 	// 	getLocKey = async (latitude, longitude) => {
