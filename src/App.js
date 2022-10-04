@@ -38,11 +38,7 @@ class App extends React.Component {
 	    }
 	  }
 
-	// 	getLocKey = async (latitude, longitude) => {
-	// 		let LocKey = await axios.get('http://dataservice.accuweather.com/locations/v1/cities/geoposition/search')
-	// 		console.log(LocKey)
-	// 	}
-	//
+	
 	// getWeather = async () => {
 	// 	let weather = await axios.get('http://dataservice.accuweather.com/currentconditions/v1/')
 	// 	console.log(weather)
