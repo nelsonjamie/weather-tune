@@ -5,10 +5,13 @@ import './App.css';
 
 class App extends React.Component {
 	state = {
-		userLoc: 'Tucson',
 		weather: 'sunny',
-		longitude: '0',
-		latitude: '0',
+		longitude: 0,
+		latitude: 0,
+		temp: 0,
+		feelsLike: 0,
+		humidity: 0,
+		windspeed: 0
 	}
 
 	// //for Spotify Api
@@ -41,10 +44,12 @@ class App extends React.Component {
 
 	getWeather = async () => {
 		let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=7217d8925634726c87adcf087ea90583`)
-		console.log(openweather)
-		// this.setState({
-		// 	weather: openweather
-		// })
+		console.log(JSON.stringify(openweather.data.weather[0].main, null, 2))
+
+
+		this.setState({
+			weather: openweather.data.weather[0].main
+		})
 	}
 
 
@@ -60,7 +65,7 @@ class App extends React.Component {
 							<h1>40℃</h1>
 						</div>
 						<div className="description">
-							<p>Clouds</p>
+							<p>{this.state.weather}</p>
 						</div>
 					</div>
 					<div className="bottom">
