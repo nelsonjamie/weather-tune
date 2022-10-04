@@ -80,7 +80,6 @@ class App extends React.Component {
 					</div>
 				</div>
 			</div>
-
 	)
 	}
 }
