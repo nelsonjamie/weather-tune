@@ -9,9 +9,9 @@ class App extends React.Component {
 		longitude: 0,
 		latitude: 0,
 		temp: 0,
-		feelsLike: 0,
-		humidity: 0,
-		windspeed: 0
+		feelsLike: 100,
+		humidity: 55,
+		windspeed: 2
 	}
 
 	// //for Spotify Api
@@ -43,12 +43,15 @@ class App extends React.Component {
 
 
 	getWeather = async () => {
-		let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&appid=7217d8925634726c87adcf087ea90583`)
-		console.log(JSON.stringify(openweather.data.weather[0].main, null, 2))
-
+		let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&units=metric&appid=7217d8925634726c87adcf087ea90583`)
+		console.log(JSON.stringify(openweather.data, null, 2))
 
 		this.setState({
-			weather: openweather.data.weather[0].main
+			weather: openweather.data.weather[0].main,
+			temp: Math.floor(openweather.data.main.temp),
+			feelsLike: Math.floor(openweather.data.main.feels_like),
+			humidity: openweather.data.main.humidity,
+			windspeed: Math.floor(openweather.data.wind.speed)
 		})
 	}
 
@@ -59,10 +62,10 @@ class App extends React.Component {
 				<div className="container">
 					<div className="top">
 						<div className="location">
-							<p>Stockholm</p>
+							<p>Current Weather Conditions</p>
 						</div>
 						<div className="temp">
-							<h1>40℃</h1>
+							<h1>{this.state.temp}℃</h1>
 						</div>
 						<div className="description">
 							<p>{this.state.weather}</p>
@@ -70,15 +73,15 @@ class App extends React.Component {
 					</div>
 					<div className="bottom">
 						<div className="feels">
-							<p className='bold'>30℃</p>
+							<p className='bold'>{this.state.feelsLike}℃</p>
 							<p>Feels like</p>
 						</div>
 						<div className="humidity">
-							<p className='bold'>10%</p>
+							<p className='bold'>{this.state.humidity}%</p>
 							<p>Humidity</p>
 						</div>
 						<div className="wind">
-							<p>5 MPH</p>
+							<p>{this.state.windspeed} m/s</p>
 							<p>Wind Speed</p>
 						</div>
 					</div>
