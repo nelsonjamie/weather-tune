@@ -13,7 +13,7 @@ console.log({ loginEndpoint });
 
 
 export const searchPlaylist = async (token, query) => {
-const ENDPOINT = 'https://api.spotify.com/v1/search?q='+ query+'&type=playlist&include_external=audio&limit=50'
+const ENDPOINT = 'https://api.spotify.com/v1/search?q='+ query+'&type=playlist&include_external=audio&limit=5'
 
 	let data = await axios.get(ENDPOINT, {
 		headers: {

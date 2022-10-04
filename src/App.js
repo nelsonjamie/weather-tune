@@ -35,16 +35,6 @@ class App extends React.Component {
 	    } else {
 	      console.log("Not Available");
 	    }
-
-			const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
-			const token = window.location.hash.substring(1).split("=")[1]
-
-			if (token) {
-				searchPlaylist(token, this.state.weather)
-				console.log(token)
-			} else {
-				console.log("noooo");
-			}
 	  }
 
 
@@ -53,12 +43,22 @@ class App extends React.Component {
 		// console.log(JSON.stringify(openweather.data, null, 2))
 
 		this.setState({
-			weather: openweather.data.weather[0].description,
+			weather: openweather.data.weather[0].main,
 			temp: Math.floor(openweather.data.main.temp),
 			feelsLike: Math.floor(openweather.data.main.feels_like),
 			humidity: openweather.data.main.humidity,
 			windspeed: Math.floor(openweather.data.wind.speed)
 		})
+
+		const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
+		const token = window.location.hash.substring(1).split("=")[1]
+
+		if (token) {
+			searchPlaylist(token, this.state.weather)
+			console.log(token)
+		} else {
+			console.log("noooo");
+		}
 	}
 
 
