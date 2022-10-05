@@ -54,6 +54,9 @@ class App extends React.Component {
 
 		if (token) {
 			searchPlaylist(token, this.state.weather)
+			this.setState({
+				loggedIn: true
+			})
 			console.log(token)
 		} else {
 			console.log("noooo");
@@ -77,11 +80,10 @@ class App extends React.Component {
 						</div>
 					</div>
 
-					<div >
+					<>
+					{this.state.loggedIn == false ? <div >
 						<a href= { loginEndpoint }><button className="spotify"> Connect to Spotify</button></a>
-					</div>
-
-					<div className="grid">
+					</div> : <div className="grid">
 					<div>
 						<iframe
 					        title="Spotify Web Player"
@@ -92,7 +94,6 @@ class App extends React.Component {
 					        allow={true}
 					      />
 					</div>
-
 					<div>
 						<iframe
 					        title="Spotify Web Player"
@@ -103,7 +104,6 @@ class App extends React.Component {
 					        allow={true}
 					      />
 					</div>
-
 					<div>
 						<iframe
 					        title="Spotify Web Player"
@@ -115,6 +115,11 @@ class App extends React.Component {
 					      />
 					</div>
 				</div>
+			 }
+			 </>
+
+
+
 
 					<div className="bottom">
 						<div className="feels">
