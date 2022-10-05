@@ -26,10 +26,15 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	text-align: center;
+  overflow: hidden;
+  width: 500px;
+  height: 300px;
+  border-radius: 10px;
+  border: 1.5px solid #;
 }
 
 .spotify {
-	border: 2px solid black;
+	border: 1px solid black;
   background-color: white;
   color: black;
   padding: 14px 28px;
@@ -39,7 +44,7 @@
   color: green;
 	border-radius: 20px;
 	margin-bottom: 20px;
-	margin-left: 250px
+	margin-left: 170px
 }
 
 .spotify:hover {

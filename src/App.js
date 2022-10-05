@@ -13,13 +13,12 @@ class App extends React.Component {
 		temp: 0,
 		feelsLike: 100,
 		humidity: 55,
-		windspeed: 2
+		windspeed: 2,
+		playlistID: ""
 	}
 
 
 	// for Weather Api
-	// const url = 'https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=a8bb6300ed41f0f14aca082acab36629'
-
 	componentDidMount() {
 	    if ("geolocation" in navigator) {
 	      console.log("Available")
@@ -37,9 +36,48 @@ class App extends React.Component {
 	      console.log("Not Available");
 	    }
 	  }
+		// for the Spotify Api
 
+		// function that gives me a random playlist from the array that the spotify api returns
+		getRandomPlaylist = async (weather) => {
+			console.log("getting random playlist...");
+
+		// Returns the token from the url and using the substring and split it separates the token from the "#access_token"
+		const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
+		const token = window.location.hash.substring(1).split("=")[1]
+
+			let spotifyData = []
+
+			// when user connects and is authorized you can receive a token and search for a playlist
+			if (token) {
+				spotifyData = await searchPlaylist(token, weather)
+			} else {
+				console.log("Invalid token");
+			}
+			console.log("spotify data: ");
+			console.log(spotifyData);
+
+			//setting the playlist items to a variable
+			let resultPlaylists = spotifyData.data.playlists.items;
+			console.log("resultPlaylists");
+			console.log(resultPlaylists);
+
+			// here we are looping through the results/items anc choosing a random playlist
+			let randomPlaylist = resultPlaylists[Math.floor(Math.random() * resultPlaylists.length)].id;
+
+			console.log("the random playlist is...");
+			console.log(randomPlaylist);
+
+			this.setState( {
+				playlistID: randomPlaylist
+			})
+
+			return randomPlaylist
+}
 
 	getWeather = async () => {
+			console.log("getting weather...");
+
 		let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&units=metric&appid=7217d8925634726c87adcf087ea90583`)
 		// console.log(JSON.stringify(openweather.data, null, 2))
 
@@ -51,16 +89,10 @@ class App extends React.Component {
 			windspeed: Math.floor(openweather.data.wind.speed)
 		})
 
-		const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
-		const token = window.location.hash.substring(1).split("=")[1]
-
-		if (token) {
-			searchPlaylist(token, this.state.weather)
-			console.log(token)
-		} else {
-			console.log("noooo");
-		}
+		this.getRandomPlaylist(openweather.data.weather[0].main)
 	}
+
+
 
 
 	render() {
@@ -87,40 +119,17 @@ class App extends React.Component {
 					<div>
 						<iframe
 					        title="Spotify Web Player"
-					        src={`https://open.spotify.com/embed/playlist/0iGIfxwsyhMHZ3GMXgW3MH?si=f024c3aa52294aa1`}
-					        width={'95%'}
-					        height={'300'}
-					        frameBorder={0}
-					        allow={true}
-					      />
-					</div>
-
-					<div>
-						<iframe
-					        title="Spotify Web Player"
-					        src={`https://open.spotify.com/embed/playlist/37i9dQZF1DX1BzILRveYHb`}
-					        width={'95%'}
-					        height={'300'}
-					        frameBorder={0}
-					        allow={true}
-					      />
-					</div>
-
-					<div>
-						<iframe
-					        title="Spotify Web Player"
-					        src={`https://open.spotify.com/embed/playlist/2L7ITJDRWIVNkxNq8qhI30`}
-					        width={'95%'}
+					        src={`https://open.spotify.com/embed/playlist/${this.state.playlistID}`}
+					        width={'300%'}
 					        height={'300'}
 					        frameBorder={0}
 					        allow={true}
 					      />
 					</div>
 				</div>
-
 					<div className="bottom">
 						<div className="feels">
-							<p className='bold'>{this.state.feelsLike}℃</p>
+							<p className='bold'>{this.state.feelsLike}°C</p>
 							<p>Feels like</p>
 						</div>
 						<div className="humidity">
