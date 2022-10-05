@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import { loginEndpoint, searchPlaylist } from './spotify'
+import Button from 'react-bootstrap/Button'
 import './App.css';
 
 
@@ -79,7 +80,7 @@ class App extends React.Component {
 					</div>
 
 					<div >
-						<a href= { loginEndpoint }><button className='spotify'>Login to Spotify</button></a>
+						<a href= { loginEndpoint }><button className="spotify"> Connect to Spotify</button></a>
 					</div>
 
 					<div className="grid">
