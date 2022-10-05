@@ -30,20 +30,22 @@ h1 {
 	position: relative;
 	background-color: rgba(45,0,0,0.4);
 	color: #fff;
-	background-image: url('https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399115/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/thailand.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 	position: absolute;
+}
 
-
+#video {
+	position: fixed;
+	z-index: -1;
+	width: 100%;
 }
 
 .container {
 	max-width: 700px;
 	margin: auto;
 	position: static;
-	top: 2%;
 	flex-direction: column;
 	justify-content: space-between;
 }
