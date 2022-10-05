@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios'
 import { loginEndpoint, searchPlaylist } from './spotify'
 import Button from 'react-bootstrap/Button'
-import './App.css';
+import './App.css'
+
 
 
 class App extends React.Component {
@@ -63,10 +64,16 @@ class App extends React.Component {
 		}
 	}
 
+	// getBackgroundVideo = () => {
+	// 	if this.state.weather == "clouds" return "https://asset.cloudinary.com/djxvdruvu/41bbc3f896a0d3ceff205ecad4273ab6"
+	// }
 
 	render() {
 		return (
 			<div className="app">
+				<video autoPlay loop muted id='video'>
+					<source src="https://res.cloudinary.com/djxvdruvu/video/upload/v1664963088/weather-music/sunny.mp4" type="video/mp4" />
+				</video>
 				<div className="container">
 					<div className="top">
 						<div className="location">
@@ -81,7 +88,7 @@ class App extends React.Component {
 					</div>
 
 					<>
-					{this.state.loggedIn == false ? <div >
+					{this.state.loggedIn == false ? <div>
 						<a href= { loginEndpoint }><button className="spotify"> Connect to Spotify</button></a>
 					</div> : <div className="grid">
 					<div>
