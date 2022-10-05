@@ -44,7 +44,6 @@ h1 {
 	margin: auto;
 	position: static;
 	top: 2%;
-	display: grid;
 	flex-direction: column;
 	justify-content: space-between;
 }
