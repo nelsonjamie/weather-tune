@@ -13,12 +13,10 @@ class App extends React.Component {
 		temp: 0,
 		feelsLike: 100,
 		humidity: 55,
-		windspeed: 2
+		windspeed: 2,
+		loggedIn: false
 	}
 
-
-	// for Weather Api
-	// const url = 'https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=a8bb6300ed41f0f14aca082acab36629'
 
 	componentDidMount() {
 	    if ("geolocation" in navigator) {
