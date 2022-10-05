@@ -89,7 +89,7 @@ class App extends React.Component {
 					        title="Spotify Web Player"
 					        src={`https://open.spotify.com/embed/playlist/0iGIfxwsyhMHZ3GMXgW3MH?si=f024c3aa52294aa1`}
 					        width={'95%'}
-					        height={'500'}
+					        height={'300'}
 					        frameBorder={0}
 					        allow={true}
 					      />
@@ -100,7 +100,7 @@ class App extends React.Component {
 					        title="Spotify Web Player"
 					        src={`https://open.spotify.com/embed/playlist/37i9dQZF1DX1BzILRveYHb`}
 					        width={'95%'}
-					        height={'500'}
+					        height={'300'}
 					        frameBorder={0}
 					        allow={true}
 					      />
@@ -111,7 +111,7 @@ class App extends React.Component {
 					        title="Spotify Web Player"
 					        src={`https://open.spotify.com/embed/playlist/2L7ITJDRWIVNkxNq8qhI30`}
 					        width={'95%'}
-					        height={'500'}
+					        height={'300'}
 					        frameBorder={0}
 					        allow={true}
 					      />
