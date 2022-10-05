@@ -71,7 +71,7 @@ class App extends React.Component {
 							<p>Current Weather Conditions</p>
 						</div>
 						<div className="temp">
-							<h1>{this.state.temp}℃</h1>
+							<h1>{this.state.temp}°C</h1>
 						</div>
 						<div className="description">
 							<p>{this.state.weather}</p>
