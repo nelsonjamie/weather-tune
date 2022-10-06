@@ -53,6 +53,9 @@ class App extends React.Component {
 			// when user connects and is authorized you can receive a token and search for a playlist
 			if (token) {
 				spotifyData = await searchPlaylist(token, weather)
+				this.setState({
+					loggedIn: true
+				})
 			} else {
 				console.log("Invalid token");
 			}
