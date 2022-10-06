@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios'
-import { loginEndpoint, searchPlaylist } from './spotify'
 import './App.css'
 import Weather from "./Weather.js"
-import Spotify from "./spotify.js"
-
-
+import Playlist from "./Playlist.js"
+import {getWeather} from "./weatherFunctions"
+import spotifyFunctions from "./spotifyFunctions"
+import { loginEndpoint, searchPlaylist, getRandomPlaylist } from './spotifyFunctions'
 
 class App extends React.Component {
 	state = {
@@ -13,18 +13,17 @@ class App extends React.Component {
 		longitude: 0,
 		latitude: 0,
 		temp: 0,
-		feelsLike: 100,
-		humidity: 55,
-		windspeed: 2,
+		feelsLike: 1000,
+		humidity: 55555,
+		windspeed: 2222,
 		playlistID: "",
 		loggedIn: false
 	}
 
-
-	// for Weather Api
+	// Makes stuff happen
 	componentDidMount() {
 	    if ("geolocation" in navigator) {
-	      console.log("Available")
+	      console.log("User")
 				navigator.geolocation.getCurrentPosition((position) => {
 					console.log("Latitude is :", position.coords.latitude)
 		      console.log("Longitude is :", position.coords.longitude)
@@ -33,75 +32,34 @@ class App extends React.Component {
 						longitude: position.coords.longitude
 					})
 					console.log(this.state.latitude)
-					this.getWeather()
+					this.runPage()
 	    	})
 	    } else {
 	      console.log("Not Available");
 	    }
 	  }
-		// for the Spotify Api
 
-		// function that gives me a random playlist from the array that the spotify api returns
-		getRandomPlaylist = async (weather) => {
-			console.log("getting random playlist...");
+	async runPage() {
+	  	let currentWeather = await getWeather(this.state.latitude, this.state.longitude)
+			console.log("This is the weather", JSON.stringify(currentWeather, null, 2))
 
-		// Returns the token from the url and using the substring and split it separates the token from the "#access_token"
-		const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
-		const token = window.location.hash.substring(1).split("=")[1]
+			// let playlists = await spotifyFunctions.getPlaylists(currentWeather.weather)
+			//
+			// console.log(playlists)
+			//
+			// let playlist = spotifyFunctions.getRandomPlaylist(playlists)
 
-			let spotifyData = []
-
-			// when user connects and is authorized you can receive a token and search for a playlist
-			if (token) {
-				spotifyData = await searchPlaylist(token, weather)
-				this.setState({
-					loggedIn: true
-				})
-			} else {
-				console.log("Invalid token");
-			}
-			console.log("spotify data: ");
-			console.log(spotifyData);
-
-			//setting the playlist items to a variable
-			let resultPlaylists = spotifyData.data.playlists.items;
-			console.log("resultPlaylists");
-			console.log(resultPlaylists);
-
-			// here we are looping through the results/items anc choosing a random playlist
-			let randomPlaylist = resultPlaylists[Math.floor(Math.random() * resultPlaylists.length)].id;
-
-			console.log("the random playlist is...");
-			console.log(randomPlaylist);
-
-			this.setState( {
-				playlistID: randomPlaylist
-			})
-
-			return randomPlaylist
-}
-
-	getWeather = async () => {
-			console.log("getting weather...");
-
-		let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&units=metric&appid=7217d8925634726c87adcf087ea90583`)
-		// console.log(JSON.stringify(openweather.data, null, 2))
 
 		this.setState({
-			weather: openweather.data.weather[0].main,
-			temp: Math.floor(openweather.data.main.temp),
-			feelsLike: Math.floor(openweather.data.main.feels_like),
-			humidity: openweather.data.main.humidity,
-			windspeed: Math.floor(openweather.data.wind.speed)
-		})
-
-		this.getRandomPlaylist(openweather.data.weather[0].main)
-	}
-
-	// getBackgroundVideo = () => {
-	// 	if this.state.weather == "clouds" return "https://asset.cloudinary.com/djxvdruvu/41bbc3f896a0d3ceff205ecad4273ab6"
-	// }
-
+			weather: currentWeather.weather,
+			temp: Math.floor(currentWeather.temp),
+			feelsLike: Math.floor(currentWeather.feelsLike),
+			humidity: currentWeather.humidity,
+			windspeed: Math.floor(currentWeather.windspeed),
+			loggedIn: "true"
+		}
+		)
+}
 
 
 	render() {
