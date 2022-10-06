@@ -41,7 +41,7 @@ class App extends React.Component {
 
 	async runPage() {
 	  	let currentWeather = await getWeather(this.state.latitude, this.state.longitude)
-			console.log("This is the weather", JSON.stringify(currentWeather, null, 2))
+			// console.log("This is the weather", JSON.stringify(currentWeather, null, 2))
 
 			// let playlists = await spotifyFunctions.getPlaylists(currentWeather.weather)
 			//
