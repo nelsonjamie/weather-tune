@@ -15,6 +15,7 @@ class App extends React.Component {
 		feelsLike: 100,
 		humidity: 55,
 		windspeed: 2,
+
 		loggedIn: false
 	}
 
@@ -101,27 +102,7 @@ class App extends React.Component {
 					        allow={true}
 					      />
 					</div>
-					<div>
-						<iframe
-					        title="Spotify Web Player"
-					        src={`https://open.spotify.com/embed/playlist/37i9dQZF1DX1BzILRveYHb`}
-					        width={'95%'}
-					        height={'300'}
-					        frameBorder={0}
-					        allow={true}
-					      />
 					</div>
-					<div>
-						<iframe
-					        title="Spotify Web Player"
-					        src={`https://open.spotify.com/embed/playlist/2L7ITJDRWIVNkxNq8qhI30`}
-					        width={'95%'}
-					        height={'300'}
-					        frameBorder={0}
-					        allow={true}
-					      />
-					</div>
-				</div>
 			 }
 			 </>
 
