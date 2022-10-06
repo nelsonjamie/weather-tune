@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios'
 import { loginEndpoint, searchPlaylist } from './spotify'
-import Button from 'react-bootstrap/Button'
 import './App.css'
+import Weather from "./Weather.js"
+import Spotify from "./spotify.js"
 
 
 
