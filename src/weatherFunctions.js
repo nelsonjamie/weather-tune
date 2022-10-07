@@ -1,11 +1,12 @@
 import axios from 'axios'
+import { getRandomPlaylist } from "./spotifyFunctions.js"
 
 //Gets the current weather (pass results of getlocation)
 const getWeather = async (a, b) => {
 	console.log("getting weather...")
 
 	let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${a}&lon=${b}&units=metric&appid=7217d8925634726c87adcf087ea90583`)
-	console.log(JSON.stringify(openweather.data, null, 2))
+	// console.log(JSON.stringify(openweather.data, null, 2))
 
 	return {
 		weather: openweather.data.weather[0].main,
