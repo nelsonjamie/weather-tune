@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { getRandomPlaylist } from "./spotifyFunctions.js"
 
 //Gets the current weather (pass results of getlocation)
 const getWeather = async (a, b) => {
@@ -15,12 +14,22 @@ const getWeather = async (a, b) => {
 		humidity: openweather.data.main.humidity,
 		windspeed: Math.floor(openweather.data.wind.speed)
 	}
-
-	// this.getRandomPlaylist(openweather.data.weather[0].main)
 }
 
-// getBackgroundVideo = () => {
-// 	if this.state.weather == "clouds" return "https://asset.cloudinary.com/djxvdruvu/41bbc3f896a0d3ceff205ecad4273ab6"
+// getBackgroundVideo = (weather) => {
+// 	if (weather == "clouds") {
+// 		 return "https://asset.cloudinary.com/djxvdruvu/41bbc3f896a0d3ceff205ecad4273ab6"
+// 	} else if
+// 		(weather == "thunderstorm") { return ""
+// 	// } else if {
+// 	// 	weather == "drizzle" return ""
+// 	// } else if {
+// 	// 	weather == "rain" return ""
+// 	// } else if {
+// 	// 	weather == "snow" return ""
+// 	// } else if {
+// 	// 	weather == "clear" return ""
+// 	// }
 // }
 
 export {getWeather}
