@@ -3,7 +3,7 @@ import axios from 'axios'
 import './App.css'
 import Weather from "./Weather.js"
 import Playlist from "./Playlist.js"
-import {getWeather} from "./weatherFunctions"
+import {getWeather, getBackgroundVideo} from "./weatherFunctions"
 import { loginEndpoint, searchPlaylists, getRandomPlaylist, checkIsLoggedIn } from './spotifyFunctions'
 
 class App extends React.Component {
