@@ -6,13 +6,18 @@ const REDIRECT_URI = 'http://localhost:3000/'
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
 const RESPONSE_TYPE = 'token'
 
+const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
+const token = window.location.hash.substring(1).split("=")[1]
+
 
 export const loginEndpoint = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
 
 console.log({ loginEndpoint });
 
 
-export const searchPlaylist = async (token, query) => {
+export const searchPlaylists = async (token, query) => {
+
+
 const ENDPOINT = 'https://api.spotify.com/v1/search?q='+ query+'&type=playlist&include_external=audio&limit=50'
 
 	let data = await axios.get(ENDPOINT, {
@@ -27,7 +32,6 @@ const ENDPOINT = 'https://api.spotify.com/v1/search?q='+ query+'&type=playlist&i
  	return data;
 }
 
-
 // for the Spotify Api
 
 // function that gives me a random playlist from the array that the spotify api returns
@@ -35,14 +39,12 @@ export const getRandomPlaylist = async (a) => {
 	console.log("getting random playlist...");
 
 // Returns the token from the url and using the substring and split it separates the token from the "#access_token"
-const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
-const token = window.location.hash.substring(1).split("=")[1]
 
 	let spotifyData = []
 
 	// when user connects and is authorized you can receive a token and search for a playlist
 	if (token) {
-		spotifyData = await searchPlaylist(token, a)
+		spotifyData = await searchPlaylists(token, a)
 		this.setState({
 			loggedIn: true
 		})
@@ -70,4 +72,4 @@ const token = window.location.hash.substring(1).split("=")[1]
 	return randomPlaylist
 }
 
-export default { loginEndpoint, searchPlaylist, getRandomPlaylist }
+export default { loginEndpoint, searchPlaylists, getRandomPlaylist }
