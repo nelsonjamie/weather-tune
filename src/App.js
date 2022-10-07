@@ -4,7 +4,7 @@ import './App.css'
 import Weather from "./Weather.js"
 import Playlist from "./Playlist.js"
 import {getWeather} from "./weatherFunctions"
-import { loginEndpoint, searchPlaylists, getRandomPlaylist } from './spotifyFunctions'
+import { loginEndpoint, searchPlaylists, getRandomPlaylist, checkIsLoggedIn } from './spotifyFunctions'
 
 class App extends React.Component {
 	state = {
@@ -38,24 +38,33 @@ class App extends React.Component {
 	  }
 
 	async loadPage() {
+			// WEATHER
 	  	let currentWeather = await getWeather(this.state.latitude, this.state.longitude)
-			// console.log("This is the weather", JSON.stringify(currentWeather, null, 2))
 
-			let playlists = await searchPlaylists(currentWeather.weather)
+			this.setState({
+				weather: currentWeather.weather,
+				temp: Math.floor(currentWeather.temp),
+				feelsLike: Math.floor(currentWeather.feelsLike),
+				humidity: currentWeather.humidity,
+				windspeed: Math.floor(currentWeather.windspeed)
+			})
+
+			// SPOTIFY
+			// is the user logged in to Spotify? ...
+			let loggedIn = checkIsLoggedIn()
+			this.setState({
+				loggedIn: loggedIn
+			})
+
+			// console.log("This is the weather", JSON.stringify(currentWeather, null, 2))
+			let spotifyData = await searchPlaylists(currentWeather.weather)
 			//
 			// console.log(playlists)
 			//
-			let playlist = getRandomPlaylist(playlists)
-
-
-		this.setState({
-			weather: currentWeather.weather,
-			temp: Math.floor(currentWeather.temp),
-			feelsLike: Math.floor(currentWeather.feelsLike),
-			humidity: currentWeather.humidity,
-			windspeed: Math.floor(currentWeather.windspeed)
-		}
-		)
+		  let playlistID = await getRandomPlaylist(spotifyData)
+			this.setState({
+				playlistID: playlistID
+			})
 }
 
 
