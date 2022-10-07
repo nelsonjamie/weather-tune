@@ -4,8 +4,7 @@ import './App.css'
 import Weather from "./Weather.js"
 import Playlist from "./Playlist.js"
 import {getWeather} from "./weatherFunctions"
-import spotifyFunctions from "./spotifyFunctions"
-import { loginEndpoint, searchPlaylist, getRandomPlaylist } from './spotifyFunctions'
+import { loginEndpoint, searchPlaylists, getRandomPlaylist } from './spotifyFunctions'
 
 class App extends React.Component {
 	state = {
@@ -23,7 +22,6 @@ class App extends React.Component {
 	// Makes stuff happen
 	componentDidMount() {
 	    if ("geolocation" in navigator) {
-	      console.log("User")
 				navigator.geolocation.getCurrentPosition((position) => {
 					console.log("Latitude is :", position.coords.latitude)
 		      console.log("Longitude is :", position.coords.longitude)
@@ -32,22 +30,22 @@ class App extends React.Component {
 						longitude: position.coords.longitude
 					})
 					console.log(this.state.latitude)
-					this.runPage()
+					this.loadPage()
 	    	})
 	    } else {
 	      console.log("Not Available");
 	    }
 	  }
 
-	async runPage() {
+	async loadPage() {
 	  	let currentWeather = await getWeather(this.state.latitude, this.state.longitude)
 			// console.log("This is the weather", JSON.stringify(currentWeather, null, 2))
 
-			// let playlists = await spotifyFunctions.getPlaylists(currentWeather.weather)
+			let playlists = await searchPlaylists(currentWeather.weather)
 			//
 			// console.log(playlists)
 			//
-			// let playlist = spotifyFunctions.getRandomPlaylist(playlists)
+			let playlist = getRandomPlaylist(playlists)
 
 
 		this.setState({
@@ -55,8 +53,7 @@ class App extends React.Component {
 			temp: Math.floor(currentWeather.temp),
 			feelsLike: Math.floor(currentWeather.feelsLike),
 			humidity: currentWeather.humidity,
-			windspeed: Math.floor(currentWeather.windspeed),
-			loggedIn: "true"
+			windspeed: Math.floor(currentWeather.windspeed)
 		}
 		)
 }
