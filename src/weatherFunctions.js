@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 //Gets the current weather (pass results of getlocation)
-const getWeather = async (a, b) => {
+export const getWeather = async (a, b) => {
 	console.log("getting weather...")
 
 	let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${a}&lon=${b}&units=metric&appid=7217d8925634726c87adcf087ea90583`)
@@ -16,20 +16,26 @@ const getWeather = async (a, b) => {
 	}
 }
 
-// getBackgroundVideo = (weather) => {
-// 	if (weather == "clouds") {
-// 		 return "https://asset.cloudinary.com/djxvdruvu/41bbc3f896a0d3ceff205ecad4273ab6"
-// 	} else if
-// 		(weather == "thunderstorm") { return ""
-// 	// } else if {
-// 	// 	weather == "drizzle" return ""
-// 	// } else if {
-// 	// 	weather == "rain" return ""
-// 	// } else if {
-// 	// 	weather == "snow" return ""
-// 	// } else if {
-// 	// 	weather == "clear" return ""
-// 	// }
-// }
-
-export {getWeather}
+export const getBackgroundVideo = async (weather) => {
+	if (weather == "Clouds") {
+		 return "https://res.cloudinary.com/djxvdruvu/video/upload/v1664964636/weather-music/clouds-day.mp4"
+	}
+	else if
+		(weather == "thunderstorm") {
+			return "https://res.cloudinary.com/djxvdruvu/video/upload/v1664966149/weather-music/thunderstorm.mp4"
+	} else if
+		(weather == "drizzle") {
+			return "https://res.cloudinary.com/djxvdruvu/video/upload/v1664964629/weather-music/drizzle.mp4"
+	} else if
+		(weather == "rain") {
+			return "https://res.cloudinary.com/djxvdruvu/video/upload/v1664964633/weather-music/rain.mp4"
+	} else if
+		(weather == "snow") {
+			return "https://res.cloudinary.com/djxvdruvu/video/upload/v1664964638/weather-music/snow.mp4"
+	} else if
+		(weather == "clear") {
+			return "https://res.cloudinary.com/djxvdruvu/video/upload/v1664963088/weather-music/sunny.mp4"
+	} else {
+		 return "https://res.cloudinary.com/djxvdruvu/video/upload/v1664964639/weather-music/clear-night.mp4"
+	}
+}
