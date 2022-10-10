@@ -60,7 +60,7 @@ class App extends React.Component {
 
 			// Conditionals to make the search results better
 			if (currentWeather.weather == 'Thunderstorm') {
-				currentWeather.weather = 'Cloudy'
+				currentWeather.weather = 'Stormy'
 			}
 			if (currentWeather.weather == 'Drizzle') {
 				currentWeather.weather = 'Rainy'
