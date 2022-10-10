@@ -1,35 +1,37 @@
 import React from 'react';
 import axios from 'axios'
 import './App.css'
-import Weather from "./Weather.js"
 import Playlist from "./Playlist.js"
 import {getWeather, getBackgroundVideo} from "./weatherFunctions"
 import { loginEndpoint, searchPlaylists, getRandomPlaylist, checkIsLoggedIn } from './spotifyFunctions'
+import SunSpinner from './SunSpinner.js'
 
 class App extends React.Component {
 	state = {
-		weather: 'sunny',
+		weather: '',
 		longitude: 0,
 		latitude: 0,
 		temp: 0,
-		feelsLike: 1000,
-		humidity: 55555,
-		windspeed: 2222,
+		feelsLike: 0,
+		humidity: 0,
+		windspeed: 0,
 		playlistID: "",
-		loggedIn: false
+		loggedIn: null,
+		video: null
 	}
 
 	// Makes stuff happen
 	componentDidMount() {
 	    if ("geolocation" in navigator) {
 				navigator.geolocation.getCurrentPosition((position) => {
+					console.log(position)
 					console.log("Latitude is :", position.coords.latitude)
 		      console.log("Longitude is :", position.coords.longitude)
 					this.setState({
 						latitude: position.coords.latitude,
 						longitude: position.coords.longitude
 					})
-					console.log(this.state.latitude)
+
 					this.loadPage()
 	    	})
 	    } else {
@@ -41,12 +43,14 @@ class App extends React.Component {
 			// WEATHER
 	  	let currentWeather = await getWeather(this.state.latitude, this.state.longitude)
 
+
 			this.setState({
 				weather: currentWeather.weather,
 				temp: Math.floor(currentWeather.temp),
 				feelsLike: Math.floor(currentWeather.feelsLike),
 				humidity: currentWeather.humidity,
-				windspeed: Math.floor(currentWeather.windspeed)
+				windspeed: Math.floor(currentWeather.windspeed),
+				video: await getBackgroundVideo(currentWeather.weather)
 			})
 
 			// SPOTIFY
@@ -69,11 +73,14 @@ class App extends React.Component {
 
 
 	render() {
+		console.log(this.state.loggedIn);
 		return (
 			<div className="app">
+			{this.state.video && (
 				<video autoPlay loop muted id='video'>
-					<source src="https://res.cloudinary.com/djxvdruvu/video/upload/v1664963088/weather-music/sunny.mp4" type="video/mp4" />
+					<source src={this.state.video} type="video/mp4" />
 				</video>
+			)}
 				<div className="container">
 					<div className="top">
 						<div className="location">
@@ -88,11 +95,15 @@ class App extends React.Component {
 					</div>
 
 					<>
-					{this.state.loggedIn == false ? <div>
+					{this.state.loggedIn == false && <div>
 						<a href= { loginEndpoint }><button className="spotify"> Connect to Spotify</button></a>
-					</div> : <div className="grid">
-					<div>
-						<iframe
+					</div>}
+
+					{this.state.loggedIn && (
+						<div className="grid">
+						<div>
+							{this.state.playlistID && (
+								<iframe
 					        title="Spotify Web Player"
 					        src={`https://open.spotify.com/embed/playlist/${this.state.playlistID}`}
 					        width={'300%'}
@@ -100,8 +111,15 @@ class App extends React.Component {
 					        frameBorder={0}
 					        allow={true}
 					      />
-					</div>
-					</div>
+							)}
+
+							{!this.state.playlistID && (
+								<SunSpinner />
+							)}
+
+						</div>
+						</div>
+					)
 			 }
 			 </>
 
