@@ -57,6 +57,27 @@ class App extends React.Component {
 			})
 
 			// console.log("This is the weather", JSON.stringify(currentWeather, null, 2))
+
+			// Conditionals to make the search results better
+			if (currentWeather.weather == 'Thunderstorm') {
+				currentWeather.weather = 'Cloudy'
+			}
+			if (currentWeather.weather == 'Drizzle') {
+				currentWeather.weather = 'Rainy'
+			}
+			if (currentWeather.weather == 'Rain') {
+				currentWeather.weather = 'Rainy'
+			}
+			if (currentWeather.weather == 'Snow') {
+				currentWeather.weather = 'Snowy'
+			}
+			if (currentWeather.weather == 'Clear') {
+				currentWeather.weather = 'Sunny'
+			}
+			if (currentWeather.weather == 'Clouds') {
+				currentWeather.weather = 'Cloudy'
+			}
+
 			let spotifyData = await searchPlaylists(currentWeather.weather)
 			//
 			// console.log(playlists)
