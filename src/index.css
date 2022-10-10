@@ -17,11 +17,12 @@ code {
 }
 
 p {
-	font-size: 1.6rem;
+	font-size: 1.2rem;
+	margin-top: 2.2%
 }
 
 h1 {
-	font-size: 6rem;
+	font-size: 4rem;
 }
 
 .app {
@@ -71,8 +72,8 @@ h1 {
 	justify-content: space-evenly;
 	text-align: center;
 	width: 100%;
-	margin: 1rem auto;
-	padding: 1rem;
+	margin: 0.5rem auto;
+	padding: 0.5rem;
 	border-radius: 12px;
 	background-color: rgba(255,255,255, 0.2);
 }
