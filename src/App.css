@@ -161,7 +161,7 @@ h1 {
 }
 
 .app .description {
-	position: relative;
+	margin-top: 100px;
 	right: -90%;
 	transform-origin: 0 0;
 	transform: rotate(270deg);
