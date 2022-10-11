@@ -16,6 +16,20 @@ export const getWeather = async (a, b) => {
 	}
 }
 
+export const getCity = async (a, b) => {
+	console.log("getting city...")
+
+	let reverseGeo = await axios.get(`https://api.bigdatacloud.net/data/reverse-geocode-client`)
+	// console.log(JSON.stringify(reverseGeo.data, null, 2))
+
+
+	return {
+		city: reverseGeo.data.city,
+		locality: reverseGeo.data.locality,
+		country: reverseGeo.data.countryName
+	}
+}
+
 export const getBackgroundVideo = async (weather) => {
 	if (weather === "Clouds") {
 		 return "https://res.cloudinary.com/djxvdruvu/video/upload/v1664964636/weather-music/clouds-day.mp4"
