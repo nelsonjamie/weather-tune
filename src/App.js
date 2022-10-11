@@ -63,22 +63,22 @@ class App extends React.Component {
 			// console.log("This is the weather", JSON.stringify(currentWeather, null, 2))
 
 			// Conditionals to make the search results better
-			if (currentWeather.weather == 'Thunderstorm') {
+			if (currentWeather.weather === 'Thunderstorm') {
 				currentWeather.weather = 'Stormy'
 			}
-			if (currentWeather.weather == 'Drizzle') {
+			if (currentWeather.weather === 'Drizzle') {
 				currentWeather.weather = 'Rainy'
 			}
-			if (currentWeather.weather == 'Rain') {
+			if (currentWeather.weather === 'Rain') {
 				currentWeather.weather = 'Rainy'
 			}
-			if (currentWeather.weather == 'Snow') {
+			if (currentWeather.weather === 'Snow') {
 				currentWeather.weather = 'Snowy'
 			}
-			if (currentWeather.weather == 'Clear') {
+			if (currentWeather.weather === 'Clear') {
 				currentWeather.weather = 'Sunny'
 			}
-			if (currentWeather.weather == 'Clouds') {
+			if (currentWeather.weather === 'Clouds') {
 				currentWeather.weather = 'Cloudy'
 			}
 
@@ -104,19 +104,23 @@ class App extends React.Component {
 			)}
 				<div className="container">
 					<div className="top">
+						<column>
 						<div className="location">
 							<p>Current Weather Conditions</p>
 						</div>
 						<div className="temp">
 							<h1>{this.state.temp}°C</h1>
 						</div>
+						</column>
+						<column>
 						<div className="description">
-							<p>{this.state.weather}</p>
+							{this.state.weather}
 						</div>
+						</column>
 					</div>
 
 					<>
-					{this.state.loggedIn == false && <div className="divspotify">
+					{this.state.loggedIn === false && <div className="divspotify">
 						<a href= { loginEndpoint }><button className="spotify"> Connect to Spotify</button></a>
 					</div>}
 
