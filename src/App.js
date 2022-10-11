@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import './App.css'
 import Playlist from "./Playlist.js"
-import {getWeather, getBackgroundVideo} from "./weatherFunctions"
+import {getWeather, getBackgroundVideo, getCity} from "./weatherFunctions"
 import { loginEndpoint, searchPlaylists, getRandomPlaylist, checkIsLoggedIn } from './spotifyFunctions'
 import SunSpinner from './SunSpinner.js'
 
@@ -17,7 +17,10 @@ class App extends React.Component {
 		windspeed: 0,
 		playlistID: "",
 		loggedIn: null,
-		video: null
+		video: null,
+		city: '',
+		locality: '',
+		country: ''
 	}
 
 	// Makes stuff happen
@@ -43,6 +46,7 @@ class App extends React.Component {
 			// WEATHER
 	  	let currentWeather = await getWeather(this.state.latitude, this.state.longitude)
 
+			let currentCity = await getCity(this.state.latitude, this.state.longitude)
 
 			this.setState({
 				weather: currentWeather.weather,
@@ -50,8 +54,12 @@ class App extends React.Component {
 				feelsLike: Math.floor(currentWeather.feelsLike),
 				humidity: currentWeather.humidity,
 				windspeed: Math.floor(currentWeather.windspeed),
-				video: await getBackgroundVideo(currentWeather.weather)
+				video: await getBackgroundVideo(currentWeather.weather),
+				city: currentCity.city,
+				locality: currentCity.locality,
+				country: currentCity.country
 			})
+
 
 			// SPOTIFY
 			// is the user logged in to Spotify? ...
@@ -106,14 +114,14 @@ class App extends React.Component {
 					<div className="top">
 						<column>
 						<div className="location">
-							<p>Current Weather Conditions</p>
+							<p>Current Weather Conditions in {this.state.city || this.state.locality}, {this.state.country}</p>
 						</div>
 						<div className="temp">
 							<h1>{this.state.temp}°C</h1>
 						</div>
 						</column>
 						<column>
-						<div className="description">
+						<div className="description bold">
 							{this.state.weather}
 						</div>
 						</column>
@@ -161,7 +169,7 @@ class App extends React.Component {
 							<p>Humidity</p>
 						</div>
 						<div className="wind">
-							<p>{this.state.windspeed} m/s</p>
+							<p className="bold">{this.state.windspeed} m/s</p>
 							<p>Wind Speed</p>
 						</div>
 					</div>
