@@ -110,6 +110,8 @@
  animation: spin 3s linear infinite;
 }
 
+//end of Spinner
+
 p {
 	font-size: 1.2rem;
 	margin-top: 2.2%
@@ -151,6 +153,11 @@ h1 {
 
 .app .top {
 	width: 100%;
+}
+
+.top {
+	display: grid;
+	grid-template-columns: 11fr 1fr;
 }
 
 .app .description {
