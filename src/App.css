@@ -3,13 +3,19 @@
 	margin-left: auto;
 	margin-right: auto;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	text-align: center;
-  overflow: hidden;
-  width: 500px;
-  height: 300px;
-  border-radius: 10px;
-  border: 1.5px solid #;
+	grid-template-columns: 500px;
+	justify-content: center;
+}
+
+.grid > div {
+    width: 500px;
+		margin: 0 auto;
+}
+
+@media (max-width: 500px) {
+	.grid > div {
+		width: 70%;
+	}
 }
 
 .spotify {
@@ -181,4 +187,8 @@ h1 {
 
 .bold {
 	font-weight: 700;
+}
+
+iframe {
+	border-radius: 12px;
 }
