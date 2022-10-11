@@ -25,6 +25,10 @@
 	margin-bottom: 20px;
 }
 
+.divspotify {
+	text-align: center;
+}
+
 .spotify:hover {
   background-color: #04AA6D;
   color: white;
