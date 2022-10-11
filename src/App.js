@@ -90,14 +90,16 @@ class App extends React.Component {
 				currentWeather.weather = 'Cloudy'
 			}
 
-			let spotifyData = await searchPlaylists(currentWeather.weather)
-			//
-			// console.log(playlists)
-			//
-		  let playlistID = await getRandomPlaylist(spotifyData)
-			this.setState({
-				playlistID: playlistID
-			})
+			if (loggedIn) {
+					let spotifyData = await searchPlaylists(currentWeather.weather)
+				//
+				// console.log(playlists)
+				//
+			  let playlistID = await getRandomPlaylist(spotifyData)
+				this.setState({
+					playlistID: playlistID
+				})
+			}
 }
 
 
