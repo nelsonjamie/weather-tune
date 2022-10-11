@@ -1,7 +1,7 @@
 //for Spotify Api
 import axios from 'axios'
 
-const CLIENT_ID = '874bc4727f4046dfb6ace3b47584305f'
+const CLIENT_ID = '931f966f8dbb4c89b2abedac362a8d4b'
 const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
 const RESPONSE_TYPE = 'token'
