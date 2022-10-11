@@ -41,7 +41,6 @@
 }
 
 
-//Spinner css
 .innerCircle {
     position:absolute;
     background:pink;
@@ -116,7 +115,7 @@
  animation: spin 3s linear infinite;
 }
 
-//end of Spinner
+/* end of Spinner */
 
 p {
 	font-size: 1.2rem;

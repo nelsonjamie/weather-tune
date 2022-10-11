@@ -6,11 +6,11 @@ const REDIRECT_URI = 'http://localhost:3000/'
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize'
 const RESPONSE_TYPE = 'token'
 
-const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
+// const params = new Proxy(new URLSearchParams(window.location.search), {get: (searchParams, prop) => searchParams.get(prop),});
 const token = window.location.hash.substring(1).split("=")[1]
 
 export const checkIsLoggedIn = () => {
-	return token != undefined
+	return token !== undefined
 }
 
 export const loginEndpoint = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
