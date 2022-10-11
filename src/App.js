@@ -116,7 +116,7 @@ class App extends React.Component {
 					</div>
 
 					<>
-					{this.state.loggedIn == false && <div>
+					{this.state.loggedIn == false && <div className="divspotify">
 						<a href= { loginEndpoint }><button className="spotify"> Connect to Spotify</button></a>
 					</div>}
 
