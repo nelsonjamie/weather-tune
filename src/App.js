@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css'
 import {getWeather, getBackgroundVideo, getCity} from "./weatherFunctions"
-import { loginEndpoint, searchPlaylists, getRandomPlaylist, checkIsLoggedIn } from './spotifyFunctions'
+import {loginEndpoint, searchPlaylists, getRandomPlaylist, checkIsLoggedIn} from './spotifyFunctions'
 import SunSpinner from './SunSpinner.js'
 
 class App extends React.Component {
@@ -17,6 +17,7 @@ class App extends React.Component {
 		loggedIn: null,
 		video: null,
 		city: '',
+		usState: '',
 		locality: '',
 		country: ''
 	}
@@ -54,6 +55,7 @@ class App extends React.Component {
 				windspeed: Math.floor(currentWeather.windspeed),
 				video: await getBackgroundVideo(currentWeather.weather),
 				city: currentCity.city,
+				usState: currentCity.usState,
 				locality: currentCity.locality,
 				country: currentCity.country
 			})
@@ -110,14 +112,18 @@ class App extends React.Component {
 					<source src={this.state.video} type="video/mp4" />
 				</video>
 			)}
+			<div className="logo">
+					<img className="logo"
+						src="/logo.png"/>
+			</div>
 				<div className="container">
 					<div className="top">
 						<div>
 						<div className="location">
-							<p>Current Weather Conditions in {this.state.city || this.state.locality}, {this.state.country}</p>
+							<p>Current Weather Conditions in {this.state.city || this.state.locality}, {this.state.usState} • {this.state.country}</p>
 						</div>
 						<div className="temp">
-							<h1>{this.state.temp}°C</h1>
+							<h1>{this.state.temp}°F</h1>
 						</div>
 						</div>
 						<div>
@@ -129,7 +135,7 @@ class App extends React.Component {
 
 					<>
 					{this.state.loggedIn === false && <div className="divspotify">
-						<a href= { loginEndpoint }><button className="spotify"> Connect to Spotify</button></a>
+						<a href= { loginEndpoint }><button className="spotify">Connect to Spotify</button></a>
 					</div>}
 
 					{this.state.loggedIn && (
@@ -161,7 +167,7 @@ class App extends React.Component {
 
 					<div className="bottom">
 						<div className="feels">
-							<p className='bold'>{this.state.feelsLike}°C</p>
+							<p className='bold'>{this.state.feelsLike}°F</p>
 							<p>Feels like</p>
 						</div>
 						<div className="humidity">
@@ -169,7 +175,7 @@ class App extends React.Component {
 							<p>Humidity</p>
 						</div>
 						<div className="wind">
-							<p className="bold">{this.state.windspeed} m/s</p>
+							<p className="bold">{this.state.windspeed} mph</p>
 							<p>Wind Speed</p>
 						</div>
 					</div>
