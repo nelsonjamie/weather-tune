@@ -113,7 +113,7 @@ class App extends React.Component {
 				</video>
 			)}
 			<div className="logo">
-					<img className="logo"
+					<img className="logo" alt="sun logo"
 						src="/logo.png"/>
 			</div>
 				<div className="container">
