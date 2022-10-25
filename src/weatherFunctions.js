@@ -4,8 +4,8 @@ import axios from 'axios'
 export const getWeather = async (a, b) => {
 	console.log("getting weather...")
 
-	let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${a}&lon=${b}&units=metric&appid=7217d8925634726c87adcf087ea90583`)
-	// console.log(JSON.stringify(openweather.data, null, 2))
+	let openweather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${a}&lon=${b}&units=imperial&appid=7217d8925634726c87adcf087ea90583`)
+	console.log(JSON.stringify(openweather.data, null, 2))
 
 	return {
 		weather: openweather.data.weather[0].main,
@@ -20,11 +20,12 @@ export const getCity = async (a, b) => {
 	console.log("getting city...")
 
 	let reverseGeo = await axios.get(`https://api.bigdatacloud.net/data/reverse-geocode-client`)
-	// console.log(JSON.stringify(reverseGeo.data, null, 2))
+	console.log(JSON.stringify(reverseGeo.data, null, 2))
 
 
 	return {
 		city: reverseGeo.data.city,
+		usState: reverseGeo.data.principalSubdivision,
 		locality: reverseGeo.data.locality,
 		country: reverseGeo.data.countryName
 	}
@@ -49,7 +50,8 @@ export const getBackgroundVideo = async (weather) => {
 	} else if
 		(weather === "clear") {
 			return "https://res.cloudinary.com/djxvdruvu/video/upload/v1664963088/weather-music/sunny.mp4"
-	} else {
+	}
+	else {
 		 return "https://res.cloudinary.com/djxvdruvu/video/upload/v1664964639/weather-music/clear-night.mp4"
 	}
 }
