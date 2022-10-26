@@ -23,7 +23,7 @@ class App extends React.Component {
 	}
 
 	// Makes stuff happen
-	componentDidMount() {
+	componentWillMount() {
 	    if ("geolocation" in navigator) {
 				navigator.geolocation.getCurrentPosition((position) => {
 					console.log(position)
@@ -43,9 +43,9 @@ class App extends React.Component {
 
 	async loadPage() {
 			// WEATHER
-	  	let currentWeather = await getWeather(this.state.latitude, this.state.longitude)
-
 			let currentCity = await getCity(this.state.latitude, this.state.longitude)
+
+			let currentWeather = await getWeather(this.state.latitude, this.state.longitude)
 
 			this.setState({
 				weather: currentWeather.weather,
