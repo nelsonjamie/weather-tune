@@ -1,5 +1,23 @@
 import axios from 'axios'
 
+
+export const getCity = async (a, b) => {
+	console.log("getting city...")
+
+	let reverseGeo = await axios.get(`https://api.bigdatacloud.net/data/reverse-geocode-client`)
+	console.log(JSON.stringify(reverseGeo.data, null, 2))
+
+
+	return {
+		// city: reverseGeo.data.city,
+		usState: reverseGeo.data.principalSubdivision,
+		locality: reverseGeo.data.locality,
+		country: reverseGeo.data.countryName
+	}
+}
+
+
+
 //Gets the current weather (pass results of getlocation)
 export const getWeather = async (a, b) => {
 	console.log("getting weather...")
@@ -12,24 +30,12 @@ export const getWeather = async (a, b) => {
 		temp: Math.floor(openweather.data.main.temp),
 		feelsLike: Math.floor(openweather.data.main.feels_like),
 		humidity: openweather.data.main.humidity,
-		windspeed: Math.floor(openweather.data.wind.speed)
+		windspeed: Math.floor(openweather.data.wind.speed),
+		city: openweather.data.name
 	}
 }
 
-export const getCity = async (a, b) => {
-	console.log("getting city...")
 
-	let reverseGeo = await axios.get(`https://api.bigdatacloud.net/data/reverse-geocode-client`)
-	console.log(JSON.stringify(reverseGeo.data, null, 2))
-
-
-	return {
-		city: reverseGeo.data.city,
-		usState: reverseGeo.data.principalSubdivision,
-		locality: reverseGeo.data.locality,
-		country: reverseGeo.data.countryName
-	}
-}
 
 export const getBackgroundVideo = async (weather) => {
 	if (weather === "Clouds") {

@@ -54,7 +54,7 @@ class App extends React.Component {
 				humidity: currentWeather.humidity,
 				windspeed: Math.floor(currentWeather.windspeed),
 				video: await getBackgroundVideo(currentWeather.weather),
-				city: currentCity.city,
+				city: currentWeather.city,
 				usState: currentCity.usState,
 				locality: currentCity.locality,
 				country: currentCity.country
@@ -129,7 +129,7 @@ class App extends React.Component {
 							<div className="description bold">
 								{this.state.weather}
 							</div>
-						
+
 				</div>
 
 					<>
