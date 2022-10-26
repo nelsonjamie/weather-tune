@@ -117,20 +117,16 @@ class App extends React.Component {
 			</div>
 				<div className="container">
 					<div className="top">
-						<div>
+
 							<div className="location">
 								<p>Current Weather Conditions in {this.state.city || this.state.locality}, {this.state.usState} • {this.state.country}</p>
 							</div>
 							<div className="temp">
 								<h1>{this.state.temp}°F </h1>
+								<h2>{this.state.weather}</h2>
 							</div>
-							</div>
-
-							<div className="description bold">
-								{this.state.weather}
-							</div>
-
-				</div>
+						
+					</div>
 
 					<>
 					{this.state.loggedIn === false && <div className="divspotify">

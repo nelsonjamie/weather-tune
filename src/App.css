@@ -38,6 +38,7 @@ img.logo {
   color: green;
 	border-radius: 20px;
 	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 .divspotify {
@@ -172,7 +173,8 @@ h1 {
 
 .top {
 	display: grid;
-	grid-template-columns: 11fr 1fr;
+	grid-template-columns: 12fr;
+	text-align: center;
 }
 
 .app .description {
